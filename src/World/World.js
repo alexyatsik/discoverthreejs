@@ -6,6 +6,8 @@ import { createLights } from "./components/lights.js";
 import { createRenderer } from "./systems/renderer.js";
 import { Resizer } from "./systems/Resizer.js";
 
+import { MathUtils } from '../../node_modules/three/src/Three.js'
+
 class World {
   #camera
   #scene
@@ -25,6 +27,9 @@ class World {
     );
 
     const resizer = new Resizer(container, this.#camera, this.#renderer);
+    resizer.onResize = () => {
+      this.render();
+    }
   }
 
   render() {
