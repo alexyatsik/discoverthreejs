@@ -1,4 +1,4 @@
-import { World } from './World/World';
+import { World } from './World/World.js';
 
 function main() {
   const container = document.getElementById('scene-container');
