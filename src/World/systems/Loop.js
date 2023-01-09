@@ -4,10 +4,14 @@ class Loop {
   #camera
   #scene
   #renderer
+  #updatables
+  #clock
   constructor(scene, camera, renderer) {
     this.#camera = camera;
     this.#scene = scene;
     this.#renderer = renderer;
+    this.#updatables = [];
+    this.#clock = new Clock();
   }
 
   start() {
@@ -22,8 +26,16 @@ class Loop {
     this.#renderer.setAnimationLoop(null);
   }
 
-  #tick() {
+  addUpdatable(object) {
+    this.#updatables.push(object);
+  }
 
+  #tick() {
+    for (const object of this.#updatables) {
+      const delta = this.#clock.getDelta();
+
+      object.tick(delta);
+    }
   }
 }
 

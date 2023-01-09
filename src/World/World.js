@@ -22,10 +22,20 @@ class World {
     container.append(this.#renderer.domElement);
 
     const cube = createCube();
+    cube.position.set(2,2,-10);
+    const cube2 = createCube();
+    cube2.position.set(-2,2, -10);
+    const cube3 = createCube();
+    cube3.position.set(0, -2, -10);
     const light = createLights();
 
+    this.#loop.addUpdatable(cube);
+    this.#loop.addUpdatable(cube2);
+    this.#loop.addUpdatable(cube3);
     this.#scene.add(
       cube,
+      cube2,
+      cube3,
       light
     );
 
