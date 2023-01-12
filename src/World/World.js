@@ -4,6 +4,7 @@ import { createCube } from "./components/cube.js";
 import { createSphere } from "./components/sphere.js";
 import { createLights } from "./components/lights.js";
 import { createRenderer } from "./systems/renderer.js";
+import { createControls } from "./systems/controls.js";
 import { Resizer } from "./systems/Resizer.js";
 import { Loop } from "./systems/Loop.js";
 
@@ -21,21 +22,17 @@ class World {
     this.#loop = new Loop(this.#scene, this.#camera, this.#renderer);
     container.append(this.#renderer.domElement);
 
+    const controls = createControls(this.#camera, this.#renderer.domElement);
+
     const cube = createCube();
-    cube.position.set(2,2,-10);
-    const cube2 = createCube();
-    cube2.position.set(-2,2, -10);
-    const cube3 = createCube();
-    cube3.position.set(0, -2, -10);
+    cube.position.set(0,0,0);
+
     const light = createLights();
 
-    this.#loop.addUpdatable(cube);
-    this.#loop.addUpdatable(cube2);
-    this.#loop.addUpdatable(cube3);
+    // this.#loop.addUpdatable(cube);
+    this.#loop.addUpdatable(controls);
     this.#scene.add(
       cube,
-      cube2,
-      cube3,
       light
     );
 
