@@ -27,13 +27,13 @@ class World {
     const cube = createCube();
     cube.position.set(0,0,0);
 
-    const light = createLights();
+    const { directionalLight, ambientLight } = createLights();
 
-    // this.#loop.addUpdatable(cube);
     this.#loop.addUpdatable(controls);
     this.#scene.add(
       cube,
-      light
+      directionalLight,
+      ambientLight
     );
 
     const resizer = new Resizer(container, this.#camera, this.#renderer);
