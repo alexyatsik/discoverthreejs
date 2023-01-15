@@ -28,7 +28,8 @@ class World {
 
     const { directionalLight, ambientLight } = createLights();
 
-    this.#loop.addUpdatable(controls, meshGroup);
+    this.#loop.addUpdatable(controls);
+    this.#loop.addUpdatable(meshGroup);
     this.#scene.add(
       meshGroup,
       directionalLight,

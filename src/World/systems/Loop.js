@@ -16,9 +16,9 @@ class Loop {
 
   start() {
     this.#renderer.setAnimationLoop(() => {
-      this.#renderer.render(this.#scene, this.#camera);
-
       this.#tick();
+
+      this.#renderer.render(this.#scene, this.#camera);
     });
   }
 
@@ -31,9 +31,8 @@ class Loop {
   }
 
   #tick() {
-    for (const object of this.#updatables) {
-      const delta = this.#clock.getDelta();
-
+    const delta = this.#clock.getDelta();
+    for (let object of this.#updatables) {
       object.tick(delta);
     }
   }
