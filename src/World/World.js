@@ -2,12 +2,12 @@ import { createCamera } from "./components/camera.js";
 import { createScene } from "./components/scene.js";
 import { createCube } from "./components/cube.js";
 import { createSphere } from "./components/sphere.js";
+import { createMeshGroup } from "./components/meshGroup.js";
 import { createLights } from "./components/lights.js";
 import { createRenderer } from "./systems/renderer.js";
 import { createControls } from "./systems/controls.js";
 import { Resizer } from "./systems/Resizer.js";
 import { Loop } from "./systems/Loop.js";
-
 import { MathUtils } from '../../node_modules/three/src/Three.js'
 
 class World {
@@ -24,14 +24,13 @@ class World {
 
     const controls = createControls(this.#camera, this.#renderer.domElement);
 
-    const cube = createCube();
-    cube.position.set(0,0,0);
+    const meshGroup = createMeshGroup();
 
     const { directionalLight, ambientLight } = createLights();
 
-    this.#loop.addUpdatable(controls);
+    this.#loop.addUpdatable(controls, meshGroup);
     this.#scene.add(
-      cube,
+      meshGroup,
       directionalLight,
       ambientLight
     );
