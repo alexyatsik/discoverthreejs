@@ -26,8 +26,8 @@ class Loop {
     this.#renderer.setAnimationLoop(null);
   }
 
-  addUpdatable(object) {
-    this.#updatables.push(object);
+  addUpdatable(...objects) {
+    this.#updatables.push(...objects);
   }
 
   #tick() {

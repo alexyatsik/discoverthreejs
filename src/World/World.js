@@ -23,8 +23,7 @@ class World {
     const { directionalLight, ambientLight } = createLights();
     const train = new Train();
 
-    this.#loop.addUpdatable(controls);
-    this.#loop.addUpdatable(train);
+    this.#loop.addUpdatable(controls, train);
     this.#scene.add(
       directionalLight,
       ambientLight,
