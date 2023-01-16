@@ -7,7 +7,8 @@ import { createMaterials } from "./materials.js";
 
 class Train extends Group {
   #meshes = createMeshes();
-  #radiansPerSecond = MathUtils.degToRad(30);
+  #radiansPerSecondTrainRotation = MathUtils.degToRad(10);
+  #radiansPerSecondWheelsRotation = MathUtils.degToRad(24);
 
   constructor() {
     super();
@@ -22,7 +23,12 @@ class Train extends Group {
   }
 
   tick(delta) {
-    this.rotation.y += this.#radiansPerSecond * delta;
+    this.rotation.y += this.#radiansPerSecondTrainRotation * delta;
+
+    this.#meshes.smallWheelRear.rotation.y += this.#radiansPerSecondWheelsRotation * delta;
+    this.#meshes.smallWheelCenter.rotation.y += this.#radiansPerSecondWheelsRotation * delta;
+    this.#meshes.smallWheelFront.rotation.y += this.#radiansPerSecondWheelsRotation * delta;
+    this.#meshes.bigWheel.rotation.y += this.#radiansPerSecondWheelsRotation * delta;
   }
 }
 
