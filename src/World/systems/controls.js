@@ -3,7 +3,7 @@ import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/js
 function createControls(camera, canvas) {
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true;
-
+    controls.target.y = 1;
     controls.tick = () => { controls.update() };
 
     return controls;

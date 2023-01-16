@@ -1,14 +1,11 @@
 import { createCamera } from "./components/camera.js";
 import { createScene } from "./components/scene.js";
-import { createCube } from "./components/cube.js";
-import { createSphere } from "./components/sphere.js";
-import { createMeshGroup } from "./components/meshGroup.js";
 import { createLights } from "./components/lights.js";
 import { createRenderer } from "./systems/renderer.js";
 import { createControls } from "./systems/controls.js";
 import { Resizer } from "./systems/Resizer.js";
 import { Loop } from "./systems/Loop.js";
-import { MathUtils } from '../../node_modules/three/src/Three.js'
+import { Train } from "./components/Train/Train.js";
 
 class World {
   #camera
@@ -23,17 +20,15 @@ class World {
     container.append(this.#renderer.domElement);
 
     const controls = createControls(this.#camera, this.#renderer.domElement);
-
-    const meshGroup = createMeshGroup();
-
     const { directionalLight, ambientLight } = createLights();
+    const train = new Train();
 
     this.#loop.addUpdatable(controls);
-    this.#loop.addUpdatable(meshGroup);
+    this.#loop.addUpdatable(train);
     this.#scene.add(
-      meshGroup,
       directionalLight,
-      ambientLight
+      ambientLight,
+      train
     );
 
     const resizer = new Resizer(container, this.#camera, this.#renderer);
