@@ -7,9 +7,6 @@ function createMeshes() {
   const geometries = createGeometries();
   const materials = createMaterials();
 
-  const cabin = new Mesh(geometries.cabin, materials.body);
-  cabin.position.set(1.5, 1.4, 0);
-
   const chimney = new Mesh(geometries.chimney, materials.detail);
   chimney.position.set(-2, 1.9, 0);
 
@@ -32,7 +29,6 @@ function createMeshes() {
   bigWheel.scale.set(2, 1.25, 2);
 
   return {
-    cabin,
     chimney,
     nose,
     smallWheelRear,
