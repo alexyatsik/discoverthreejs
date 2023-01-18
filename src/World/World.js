@@ -16,6 +16,8 @@ class World {
   #scene
   #renderer
   #loop
+  #controls
+
   constructor(container) {
     this.#camera = createCamera();
     this.#scene = createScene();
@@ -23,25 +25,27 @@ class World {
     this.#loop = new Loop(this.#scene, this.#camera, this.#renderer);
     container.append(this.#renderer.domElement);
 
-    const controls = createControls(this.#camera, this.#renderer.domElement);
+    this.#controls = createControls(this.#camera, this.#renderer.domElement);
     const { directionalLight, ambientLight } = createLights();
 
     // const axesHelper = new AxesHelper(5);
     // const gridHelper = new GridHelper(5);
 
-    this.#loop.addUpdatable(controls);
+    this.#loop.addUpdatable(this.#controls);
     this.#scene.add(
       directionalLight,
       ambientLight,
     );
 
-    const resizer = new Resizer(container, this.#camera, this.#renderer);
+    new Resizer(container, this.#camera, this.#renderer);
   }
 
   async init() {
     const { parrot, flamingo, stork } = await loadBirds();
 
     this.#scene.add(parrot, flamingo, stork);
+
+    this.#controls.target.copy(parrot.position);
   }
 
   render() {
