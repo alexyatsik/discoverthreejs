@@ -33,3 +33,14 @@ h1 {
     */
     background-color: skyblue;
 }
+
+
+
+.control-panel {
+    position: absolute;
+    z-index: 2;
+
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5%;
+}

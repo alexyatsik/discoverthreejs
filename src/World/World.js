@@ -17,6 +17,8 @@ class World {
   #renderer
   #loop
   #controls
+  #birdInFocusIndex = 0;
+  #arrayOfBirds = [];
 
   constructor(container) {
     this.#camera = createCamera();
@@ -43,9 +45,21 @@ class World {
   async init() {
     const { parrot, flamingo, stork } = await loadBirds();
 
+    this.#arrayOfBirds.push(parrot, flamingo, stork);
     this.#scene.add(parrot, flamingo, stork);
 
-    this.#controls.target.copy(parrot.position);
+    this.#controls.target.copy(this.#arrayOfBirds[this.#birdInFocusIndex].position);
+  }
+
+  nextBird() {
+    this.#birdInFocusIndex++;
+    if (this.#birdInFocusIndex >= this.#arrayOfBirds.length)
+      this.#birdInFocusIndex = 0;
+    this.#controls.target.copy(this.#arrayOfBirds[this.#birdInFocusIndex].position);
+  }
+
+  seeAllBirds() {
+
   }
 
   render() {
