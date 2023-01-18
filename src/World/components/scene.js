@@ -1,4 +1,4 @@
-import { Scene, Color } from '../../../node_modules/three/src/Three.js';
+import { Scene, Color } from 'https://cdn.skypack.dev/three@0.132.2';
 
 function createScene() {
   const scene = new Scene();

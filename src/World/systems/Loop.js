@@ -1,4 +1,4 @@
-import { Clock } from '../../../node_modules/three/src/Three.js';
+import { Clock } from 'https://cdn.skypack.dev/three@0.132.2';
 
 class Loop {
   #camera

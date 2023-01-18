@@ -1,8 +1,4 @@
-import {
-  DirectionalLight,
-  AmbientLight,
-  HemisphereLight
-} from '../../../node_modules/three/src/Three.js';
+import { DirectionalLight, HemisphereLight } from 'https://cdn.skypack.dev/three@0.132.2';
 
 function createLights() {
   const ambientLight = new HemisphereLight(
